@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+$servername = "localhost:3306";
+$username = "2000186_upeta";
+$password = "Sreyo123";
+$dbname = "jk_loginTable";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+$sql = "SELECT * FROM jk_loginTable";
+$result = $conn->query($sql);
+
+if ($result->num_columns > 0) {
+    // output data of each row
+    while($column = $result->fetch_assoc()) {
+        echo "<br> id: ". $row["Uid"]. " - Name: ". $row["Username"]. " " . $row["Password"] . "<br>";
+    }
+} else {
+    echo "0 results";
+}
+
+$conn->close();
+?> 
+
+</body>
+</html>
